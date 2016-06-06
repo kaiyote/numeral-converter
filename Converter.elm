@@ -1,11 +1,11 @@
 module Converter exposing (toArabic, toRoman)
 
 
-toArabic : String -> Int
+toArabic : String -> Result String String
 toArabic num =
-  1
+  Ok "1"
 
 
-toRoman : Int -> String
+toRoman : String -> Result String String
 toRoman num =
-  "I"
+  Ok "I"

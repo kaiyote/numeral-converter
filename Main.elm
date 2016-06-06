@@ -2,7 +2,8 @@ module Main exposing (..)
 
 import Html.App as Html
 import Html exposing (Html, div, input, text)
-import Html.Attributes exposing (type')
+import Html.Attributes exposing (type', placeholder, style, value)
+import Html.Events exposing (onInput)
 import String exposing (split, toInt)
 import List exposing (head)
 import Converter exposing (..)
@@ -25,43 +26,62 @@ type Msg
 type alias Model =
   { roman : String
   , arabic : String
+  , error : String
   }
 
 
 init : ( Model, Cmd Msg )
 init =
-  ( Model "" "", Cmd.none )
+  ( Model "" "" "", Cmd.none )
 
 
 view : Model -> Html Msg
 view model =
-  text "hello"
+  div []
+    [ input [ type' "text", placeholder "Roman Numerals", value model.roman, onInput Roman ] []
+    , input [ type' "text", placeholder "Arabic Numbers (integers only)", value model.arabic, onInput Arabic ] []
+    , div [ style [ ( "color", "red" ) ] ] [ text model.error]
+    ]
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
   case msg of
     Roman string ->
-      ( { model
-          | roman = string
-          , arabic = toString <| toArabic string
-        }, Cmd.none )
+      let
+        arabic =
+          toArabic string
+      in
+        case arabic of
+          Ok result ->
+            ({ model
+                | roman = string
+                , arabic = result
+                , error = ""
+                } , Cmd.none )
+          Err err ->
+            ( { model
+                | roman = string
+                , arabic = ""
+                , error = err
+                } , Cmd.none)
 
     Arabic string ->
       let
-        stringParts =
-          split "." string
-
-        intPart =
-          head stringParts
+        roman =
+          toRoman string
       in
-        case intPart of
-          Just s ->
+        case roman of
+          Ok result ->
             ( { model
-                | arabic = s
-                , roman = toRoman <| Result.withDefault 0 <| toInt s
-              }, Cmd.none )
-
-          Nothing ->
-            ( model, Cmd.none )
+                | roman = result
+                , arabic = string
+                , error = ""
+                } , Cmd.none )
+          Err err ->
+            ( { model
+                | roman = ""
+                , arabic = string
+                , error = err
+                } , Cmd.none)
 
