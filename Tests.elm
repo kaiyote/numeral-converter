@@ -1,4 +1,3 @@
-import Element exposing (Element)
 import ElmTest exposing (..)
 import Converter exposing (..)
 
