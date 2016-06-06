@@ -21,14 +21,9 @@ toRoman arabic =
   if all isDigit arabic then
     let
       num =
-        toInt arabic
+        Result.withDefault 0 <| toInt arabic
     in
-      case num of
-        Ok val ->
-          Ok <| parseArabicNumber val
-
-        Err msg ->
-          Err <| "Invalid input: " ++ msg --something has gone horribly wrong here
+      Ok <| parseArabicNumber num
 
   else
     Err "Invalid input"
