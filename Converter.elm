@@ -1,14 +1,14 @@
 module Converter exposing (toArabic, toRoman)
 
-import String exposing (toUpper, all, toList, fromList)
+import String exposing (toUpper, all, toList, fromList, toInt, repeat)
 import Char exposing (isDigit)
 
 
 toArabic : String -> Result String String
-toArabic num =
+toArabic roman =
   let
     upCase =
-      toUpper num
+      toUpper roman
   in
     if all isValidRomanNumeral upCase then
       Ok <| toString <| parseRomanNumeral upCase
@@ -17,9 +17,19 @@ toArabic num =
 
 
 toRoman : String -> Result String String
-toRoman num =
-  if all isDigit num then
-    Ok "I"
+toRoman arabic =
+  if all isDigit arabic then
+    let
+      num =
+        toInt arabic
+    in
+      case num of
+        Ok val ->
+          Ok <| parseArabicNumber val
+
+        Err msg ->
+          Err <| "Invalid input: " ++ msg --something has gone horribly wrong here
+
   else
     Err "Invalid input"
 
@@ -58,3 +68,27 @@ parseRomanNumeral roman =
       'D'::rest -> 500 + (parseRomanNumeral <| fromList rest)
       'M'::rest -> 1000 + (parseRomanNumeral <| fromList rest)
       _ -> 0
+
+
+parseArabicNumber : Int -> String
+parseArabicNumber arabic =
+  let
+    thousands =
+      arabic // 1000
+
+    rem100 =
+      arabic % 1000
+
+    hundreds =
+      rem100 // 100
+
+    rem10 =
+      rem100 % 100
+
+    tens =
+      rem10 // 10
+
+    ones =
+      rem10 % 10
+  in
+    (repeat thousands "M") ++ (repeat hundreds "C") ++ (repeat tens "X") ++ (repeat ones "I")
