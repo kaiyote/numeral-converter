@@ -12,6 +12,7 @@ romanToArabic =
     , test "MCMLXXXIX -> 1989" <| assertEqual (Ok "1989") <| toArabic "MCMLXXXIX"
     , test "HIPALS -> Error" <| assertEqual (Err "Invalid input") <| toArabic "HIPALS"
     , test "10 -> Error" <| assertEqual (Err "Invalid input") <| toArabic "10"
+    , test "'' -> 0" <| assertEqual (Ok "0") <| toArabic ""
     ]
 
 
