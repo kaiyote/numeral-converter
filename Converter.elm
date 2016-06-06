@@ -91,4 +91,21 @@ parseArabicNumber arabic =
     ones =
       rem10 % 10
   in
-    (repeat thousands "M") ++ (repeat hundreds "C") ++ (repeat tens "X") ++ (repeat ones "I")
+    (formatNumberParts thousands "M" "" "")
+    ++ (formatNumberParts hundreds "C" "D" "M")
+    ++ (formatNumberParts tens "X" "L" "C")
+    ++ (formatNumberParts ones "I" "V" "X")
+
+
+formatNumberParts : Int -> String -> String -> String -> String
+formatNumberParts count onePart fivePart upperOnePart =
+  if count == 9 then
+    onePart ++ upperOnePart
+  else if count >= 5 then
+    fivePart ++ (formatNumberParts (count % 5) onePart fivePart upperOnePart)
+  else if count == 4 then
+    onePart ++ fivePart
+  else if count > 0 then
+    repeat count onePart
+  else
+    ""
