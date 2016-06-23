@@ -1,0 +1,25 @@
+{
+  "name": "numeral-converter",
+  "version": "1.0.0",
+  "description": "numeral converter for Piller kata, in both Elm and Node",
+  "main": "index.js",
+  "scripts": {
+    "test": "ava"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kaiyote/numeral-converter.git"
+  },
+  "author": "Tim Huddle",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kaiyote/numeral-converter/issues"
+  },
+  "homepage": "https://github.com/kaiyote/numeral-converter#readme",
+  "devDependencies": {
+    "ava": "^0.15.2"
+  },
+  "ava": {
+    "files": [ "*.test.js" ]
+  }
+}
