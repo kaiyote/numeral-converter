@@ -1,5 +1,5 @@
 function toArabic(roman) {
-  return 1
+  if (!isValidRomanNumeral(roman)) throw new Error('Invalid input')
 }
 
 function toRoman(arabic) {
@@ -36,6 +36,10 @@ function formatNumberParts(count, onePart, fivePart, tenPart) {
     default:
       return ''
   }
+}
+
+function isValidRomanNumeral(roman) {
+  return !roman.match(/[^MDCLXVI]/ig)
 }
 
 module.exports = {

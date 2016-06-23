@@ -22,11 +22,11 @@ test('MCMLXXXIX -> 1989', t => {
 })
 
 test('HIPALS should throw', t => {
-  t.throws(toArabic('HIPALS'), 'Invalid input')
+  t.throws(() => toArabic('HIPALS'), 'Invalid input')
 })
 
 test('10 should throw', t => {
-  t.throws(toArabic('10'), 'Invalid input')
+  t.throws(() => toArabic('10'), 'Invalid input')
 })
 
 test('EmptyString -> 0', t => {
