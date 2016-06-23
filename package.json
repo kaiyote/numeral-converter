@@ -4,7 +4,7 @@
   "description": "numeral converter for Piller kata, in both Elm and Node",
   "main": "index.js",
   "scripts": {
-    "test": "ava"
+    "test": "ava -r babel-register"
   },
   "repository": {
     "type": "git",

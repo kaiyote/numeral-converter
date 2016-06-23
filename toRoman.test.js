@@ -22,7 +22,7 @@ test('1989 -> MCMLXXXIX', t => {
 })
 
 test('-1 should throw', t => {
-  t.throws(toRoman('-1'), 'Invalid input')
+  t.throws(toRoman('-1'))
 })
 
 test('0 -> EmptyString', t => {
@@ -30,5 +30,5 @@ test('0 -> EmptyString', t => {
 })
 
 test('X should throw', t => {
-  t.throws(toRoman('X'), 'Invalid input')
+  t.throws(toRoman('X'))
 })
