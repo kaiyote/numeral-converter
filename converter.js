@@ -1,9 +1,9 @@
 function toArabic(roman) {
-  return -1
+  return 1
 }
 
 function toRoman(arabic) {
-  return 'Z'
+  return 'I'
 }
 
 module.exports = {
