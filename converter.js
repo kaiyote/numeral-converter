@@ -1,4 +1,4 @@
-romanToArabicMap = {
+const romanToArabicMap = {
   IV: 4,
   IX: 9,
   XL: 40,
@@ -12,27 +12,6 @@ romanToArabicMap = {
   C: 100,
   D: 500,
   M: 1000
-}
-
-function toArabic(roman) {
-  if (!isValidRomanNumeral(roman)) throw new Error('Invalid input')
-  return parseRomanNumeral(roman)
-}
-
-function toRoman(arabic) {
-  if (arabic.match(/\D/g)) throw new Error('Invalid input')
-  let number = +arabic
-  let thousands = Math.floor(number / 1000)
-  let rem100 = number % 1000
-  let hundreds = Math.floor(rem100 / 100)
-  let rem10 = rem100 % 100
-  let tens = Math.floor(rem10 / 10)
-  let ones = rem10 % 10
-
-  return formatNumberParts(thousands, 'M', '', '') +
-    formatNumberParts(hundreds, 'C', 'D', 'M') +
-    formatNumberParts(tens, 'X', 'L', 'C') +
-    formatNumberParts(ones, 'I', 'V', 'X')
 }
 
 function formatNumberParts(count, onePart, fivePart, tenPart) {
@@ -58,6 +37,27 @@ function parseRomanNumeral(romanString) {
       part == 'C' && ['D', 'M'].includes(charList[0])) part += charList.shift()
 
   return romanToArabicMap[part] + parseRomanNumeral(charList.join(''))
+}
+
+function toArabic(roman) {
+  if (!isValidRomanNumeral(roman)) throw new Error('Invalid input')
+  return parseRomanNumeral(roman)
+}
+
+function toRoman(arabic) {
+  if (arabic.match(/\D/g)) throw new Error('Invalid input')
+  let number = +arabic
+  let thousands = Math.floor(number / 1000)
+  let rem100 = number % 1000
+  let hundreds = Math.floor(rem100 / 100)
+  let rem10 = rem100 % 100
+  let tens = Math.floor(rem10 / 10)
+  let ones = rem10 % 10
+
+  return formatNumberParts(thousands, 'M', '', '') +
+    formatNumberParts(hundreds, 'C', 'D', 'M') +
+    formatNumberParts(tens, 'X', 'L', 'C') +
+    formatNumberParts(ones, 'I', 'V', 'X')
 }
 
 module.exports = {

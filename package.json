@@ -4,7 +4,7 @@
   "description": "numeral converter for Piller kata, in both Elm and Node",
   "main": "index.js",
   "scripts": {
-    "test": "ava -r babel-register"
+    "test": "ava -r babel-register -r babel-polyfill"
   },
   "repository": {
     "type": "git",
@@ -17,9 +17,14 @@
   },
   "homepage": "https://github.com/kaiyote/numeral-converter#readme",
   "devDependencies": {
-    "ava": "^0.15.2"
+    "ava": "^0.15.2",
+    "babel": "^6.5.2",
+    "babel-polyfill": "^6.9.1",
+    "babel-preset-es2015": "^6.9.0"
   },
   "ava": {
-    "files": [ "*.test.js" ]
+    "files": [
+      "*.test.js"
+    ]
   }
 }
