@@ -40,6 +40,7 @@ function parseRomanNumeral(romanString) {
 }
 
 function toArabic(roman) {
+  roman = roman.toUpperCase()
   if (!isValidRomanNumeral(roman)) throw new Error('Invalid input')
   return parseRomanNumeral(roman)
 }
@@ -60,7 +61,7 @@ function toRoman(arabic) {
     formatNumberParts(ones, 'I', 'V', 'X')
 }
 
-module.exports = {
+if (typeof(module) !== 'undefined') module.exports = {
   toArabic: toArabic,
   toRoman: toRoman
 }

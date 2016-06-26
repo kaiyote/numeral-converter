@@ -1,0 +1,33 @@
+<doctype html>
+<html>
+<head>
+  <title>Numeral Converter</title>
+  <script src="./converter.js"></script>
+</head>
+<body>
+  <label for="romanInput">Roman: </label>
+  <input name="romanInput" id="romanInput" />
+  <label for="arabicInput">Arabic: </label>
+  <input name="arabicInput" id="arabicInput" />
+  <button id="convert">Convert!</button>
+  <span id="errorDisplay"></span>
+  <div>
+    If this form sees a value in the Roman input box, it'll convert it to Arabic, otherwise it'll convert the value in the Arabic input box.
+  </div>
+  <script>
+    var romanInput = document.getElementById('romanInput')
+    var arabicInput = document.getElementById('arabicInput')
+    var errorDisplay = document.getElementById('errorDisplay')
+
+    document.getElementById('convert').onclick = function() {
+      console.log('clicked')
+      try {
+        if (romanInput.value !== '') arabicInput.value = toArabic(romanInput.value)
+        else romanInput.value = toRoman(arabicInput.value)
+      } catch (e) {
+        errorDisplay.innerText = e.toString()
+      }
+    }
+  </script>
+</body>
+</html>
