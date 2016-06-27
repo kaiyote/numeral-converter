@@ -5,6 +5,7 @@
   2. Run `npm install` inside the project root folder
   3. To run the tests, run `npm test`
   4. To run the app, open index.html. This has only been tested in latest Chrome
+    - You can also run `npm start` to fire up a console version. If the input contains a number, it will attempt to convert from Arabic to Roman, otherwise it'll go the other way.
 
 ### Elm Setup
   1. [Install Elm](http://elm-lang.org/install)

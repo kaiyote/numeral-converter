@@ -4,7 +4,8 @@
   "description": "numeral converter for Piller kata, in both Elm and Node",
   "main": "index.js",
   "scripts": {
-    "test": "ava -r babel-register -r babel-polyfill"
+    "test": "ava -r babel-register -r babel-polyfill",
+    "start": "node -r babel-register -r babel-polyfill index.js"
   },
   "repository": {
     "type": "git",
